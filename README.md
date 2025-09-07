@@ -95,3 +95,72 @@ Saldo: R$ 150.00
 
 ====================================
 
+
+O projeto foi **modularizado em funções**, seguindo boas práticas:
+
+### 🔹 `depositar(saldo, valor, extrato, /)`
+- **Argumentos por posição (positional only)**  
+- Recebe o saldo, valor e extrato.  
+- Atualiza saldo e extrato.  
+- Retorna o saldo e extrato atualizados.  
+
+---
+
+### 🔹 `sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques)`
+- **Argumentos por nome (keyword only)**  
+- Verifica regras de saque:  
+  - saldo suficiente  
+  - limite por saque  
+  - limite de quantidade de saques  
+- Atualiza saldo, extrato e contador de saques.  
+- Retorna os valores atualizados.  
+
+---
+
+### 🔹 `exibir_extrato(saldo, /, *, extrato)`
+- **Mistura de argumentos posicionais e nomeados**  
+- Mostra todas as movimentações realizadas e o saldo disponível.  
+
+---
+
+### 🔹 `criar_usuario(usuarios)`
+- Cria um usuário (cliente) do banco.  
+- Campos: **nome, data de nascimento, CPF, endereço**.  
+- O **CPF deve ser único** (não é permitido cadastrar dois usuários com o mesmo CPF).  
+
+---
+
+### 🔹 `criar_conta(agencia, numero_conta, usuarios)`
+- Cria uma nova conta bancária vinculada a um usuário já cadastrado.  
+- Estrutura da conta: **agência (fixa "0001"), número da conta (sequencial), usuário vinculado**.  
+- O mesmo usuário pode ter várias contas.  
+
+---
+
+### 🔹 `listar_contas(contas)`
+- Lista todas as contas criadas no sistema.  
+- Exibe: **agência, número da conta e titular**.  
+
+---
+
+## 📂 Estrutura dos Dados
+
+### Usuário e Conta
+```python
+{
+  "nome": "João Silva",
+  "data_nascimento": "01-01-1990",
+  "cpf": "12345678900",
+  "endereco": "Rua A, 100 - Bairro B - Cidade/UF"
+}
+
+{
+  "agencia": "0001",
+  "numero_conta": 1,
+  "usuario": {dados do usuário}
+}
+
+
+
+
+
